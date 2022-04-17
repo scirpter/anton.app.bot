@@ -78,11 +78,6 @@ class Console:
         )
 
 
-class Autocomplete:
-    def __init__(self):
-        ...
-
-
 def main() -> None:
     while 1:
         lessonUrl = console.inp("Lesson URL: ", top_level_color="@pink:")
@@ -90,7 +85,7 @@ def main() -> None:
             req = request("GET", lessonUrl)
             lessonJson = req.json()
         except:
-            console.write("Error", "Invalid URL", top_level_color="@red:")
+            console.write("Error", "Invalid URL. You might wanna grab the level URL from dev tools instead? Here, an example: https://content.anton.app/files/?fileId=level%2Fc-natdeu-9%2Ftopic-04-grammatik-satzlehre%2Fblock-01-satzglieder%2Flevel-03&etag=0958-7629", top_level_color="@red:")
             continue
         lesson: Lesson = Lesson(lessonJson)
         console.write(
@@ -111,7 +106,7 @@ def main() -> None:
                 )
             elif solvedTrainers[i].isNecessary:
                 console.writeDeath(
-                    f"{i+1}) {' @yellow:|@green: '.join(['{}{}'.format(package.get('furtherInstruction'), package.get('solution')) for package in solvedTrainers[i].solutions if package.get('solution')])}",
+                    f"{i+1}) {'     @green:     '.join(['{}{}'.format(package.get('furtherInstruction'), package.get('solution')) for package in solvedTrainers[i].solutions if package.get('solution')])}",
                     top_level_color="@green:",
                 )
             else:
@@ -128,7 +123,6 @@ def main() -> None:
 if __name__ == "__main__":
     console = Console()
     console.doClear()
-    autocomplete = Autocomplete()
     os.system("title anton.app@autocompleter")
-    console.write("Init", "autocomplete @red:v0.0.1")
+    console.write("Init", "kekkin-anton.app-autocomplete @red:@0.0.1")
     main()

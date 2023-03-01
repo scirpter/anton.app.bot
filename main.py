@@ -1,9 +1,3 @@
-"""A anton.app autocompleter, coded in a brainfuck fashion.
-
-@author: Nyaanity
-"""
-
-
 from requests import request
 from lesson import Lesson
 from datetime import datetime
